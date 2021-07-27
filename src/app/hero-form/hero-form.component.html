@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 popup-header">
+      <h1>ITEM REQUEST</h1>
+    </div>
+    
+    <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="name">Project Name*</label>
+            <input type="text" class="form-control" id="name"
+                   required
+                   [(ngModel)]="model.name" name="name"
+                   #name="ngModel">
+            <div [hidden]="name.valid || name.pristine"
+                 class="alert alert-danger">
+              Porject Name is required
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="shoot">Photoshoot or Video shoot?</label>
+            <select class="form-control" id="shoot"
+                    required
+                    [(ngModel)]="model.shoot" name="shoot"
+                    #shoot="ngModel">
+              <option *ngFor="let pow of shoots" [value]="pow">{{pow}}</option>
+            </select>
+            <div [hidden]="shoot.valid || shoot.pristine" class="alert alert-danger">
+              Photoshoot or Video shoot is required
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="descripiton">Description*</label>
+        <textarea type="text" class="form-control" id="descripiton"
+               [(ngModel)]="model.descripiton" name="descripiton"></textarea>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="form-group">
+            <label for="scheduling">Contact(s) For scheduling</label>
+            <select class="form-control" id="scheduling"
+                    required
+                    [(ngModel)]="model.scheduling" name="scheduling"
+                    #scheduling="ngModel">
+              <option *ngFor="let item of schedulings" [value]="item">{{item}}</option>
+            </select>
+            <div [hidden]="scheduling.valid || scheduling.pristine" class="alert alert-danger">
+              scheduling is required
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+      <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+      <button type="button" class="btn btn-default" (click)="newHero(); heroForm.reset()">New Hero</button>
+      <i>with</i> reset
+
+      &nbsp;&nbsp;
+      <button type="button" class="btn btn-default" (click)="newHero()">New Hero</button>
+      <i>without</i> reset
+
+     <!-- NOT SHOWN IN DOCS -->
+      <div>
+        <hr>
+        Name via form.controls = {{showFormControls(heroForm)}}
+      </div>
+     <!-- - -->
+    </form>
+  </div>
+</div>

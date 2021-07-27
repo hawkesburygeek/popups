@@ -1,0 +1,9 @@
+.popup-header{
+    background-color: #183c6d;
+    color: white !important;
+}
+.popup-header h1{
+    color: white !important;
+    text-align: center;
+    padding: 30px;
+}
